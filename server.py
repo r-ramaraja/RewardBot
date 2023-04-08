@@ -23,7 +23,7 @@ mycursor=conn.cursor()
 
 @app.route('/')
 def api_root():
-    return 'HEllo BAabu' 
+    return 'Hello' 
 
 
 
