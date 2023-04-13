@@ -33,9 +33,36 @@ def bot_start(ack, body, logger):
     channel_id = body['channel_id']
     channel_name = body['channel_name']
     if channel_name == "reward":
-        app.client.chat_postMessage(channel=channel_id, text=f"Welcome to this channel {user_name}. You can provide your points to other employees by using the slash command /reward followed by the user_name and the reason you are awarding the points.\nExample) /reward <user_name> Helped me in solving a bug")
+        app.client.chat_postMessage(channel=channel_id, text=f'''Welcome to the reward channel {user_name}. 
+        You can provide your points to other employees by using the slash command /reward followed by the user_name 
+        and the reason you are awarding the points.\nExample) /reward <user_name> Helped me in solving a bug''')
+    elif channel_name == "leaderboard":
+        app.client.chat_postMessage(channel=channel_id, text=f'''Welcome to the leaderboard {user_name}. 
+        You can display the leaderboard by using the slash command /show ''')
     else:
         app.client.chat_postMessage(channel=channel_id, text=f"Welcome to this channel {user_name}.")
+    # Send an acknowledgement response to the Slack API
+    ack()
+
+
+@app.command("/show")
+def bot_start(ack, body, logger):
+    user_name = body['user_name']
+    channel_id = body['channel_id']
+    channel_name = body['channel_name']
+    
+    mycursor.execute( "SELECT * FROM EMPLOYEE_DETAILS order by points desc" )
+    rows = mycursor.fetchall()
+    max_length = 30
+    app.client.chat_postMessage(channel=channel_id, text=f'''-----------------------------------------------------''')
+    for row in rows:
+        
+        name_length = len(row[1])
+        padding =  ' '*(max_length-name_length)
+        name = row[1]+padding
+        app.client.chat_postMessage(channel=channel_id, text=f'''{name} |  {row[2]} points  |
+         \n-----------------------------------------------------''')
+
     # Send an acknowledgement response to the Slack API
     ack()
 
@@ -111,5 +138,5 @@ def handle_command(ack, respond, command):
 
 
 if __name__ == "__main__":
-    handler = SocketModeHandler(app = app, app_token=os.environ['SLACK_APP_TOKEN'])
+    handler = SocketModeHandler(app = app, app_token=os.environ['SLACK_API_TOKEN'])
     handler.start()
