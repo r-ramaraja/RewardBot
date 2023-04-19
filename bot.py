@@ -45,23 +45,46 @@ def bot_start(ack, body, logger):
     ack()
 
 
-@app.command("/show")
+@app.command("/show_leaderboard")
 def bot_start(ack, body, logger):
-    user_name = body['user_name']
-    channel_id = body['channel_id']
-    channel_name = body['channel_name']
     
-    mycursor.execute( "SELECT * FROM EMPLOYEE_DETAILS order by points desc" )
+    channel_id = body['channel_id']
+    
+    mycursor.execute( "SELECT * FROM EMPLOYEE_DETAILS ORDER BY points DESC LIMIT 10" )
     rows = mycursor.fetchall()
+    final_result = []
+    heading = {
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "Leaderboard"
+			}
+		}
+    final_result.append(heading)
     max_length = 30
-    app.client.chat_postMessage(channel=channel_id, text=f'''-----------------------------------------------------''')
     for row in rows:
-        
         name_length = len(row[1])
         padding =  ' '*(max_length-name_length)
         name = row[1]+padding
-        app.client.chat_postMessage(channel=channel_id, text=f'''{name} |  {row[2]} points  |
-         \n-----------------------------------------------------''')
+        block = {
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": name + padding + str(row[2])
+			},    
+        }
+    
+        divider =  {
+			"type": "divider"
+		}
+      
+        final_result.append(block)
+        final_result.append(divider)
+        
+    app.client.chat_postMessage(channel=channel_id,
+        blocks = final_result,
+        text = "Testing"
+    )
 
     # Send an acknowledgement response to the Slack API
     ack()

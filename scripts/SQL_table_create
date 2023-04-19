@@ -1,0 +1,13 @@
+CREATE TABLE employee_details(
+ GIT_ID VARCHAR(20),
+ user_name VARCHAR(20),
+ points INT         
+);
+
+
+CREATE TABLE audit(
+ user_name VARCHAR(20),
+ attempts INT         
+);
+
+
