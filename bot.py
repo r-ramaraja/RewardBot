@@ -33,9 +33,59 @@ def bot_start(ack, body, logger):
     channel_id = body['channel_id']
     channel_name = body['channel_name']
     if channel_name == "reward":
-        app.client.chat_postMessage(channel=channel_id, text=f"Welcome to this channel {user_name}. You can provide your points to other employees by using the slash command /reward followed by the user_name and the reason you are awarding the points.\nExample) /reward <user_name> Helped me in solving a bug")
+        app.client.chat_postMessage(channel=channel_id, text=f'''Welcome to the reward channel {user_name}. 
+        You can provide your points to other employees by using the slash command /reward followed by the user_name 
+        and the reason you are awarding the points.\nExample) /reward <user_name> Helped me in solving a bug''')
+    elif channel_name == "leaderboard":
+        app.client.chat_postMessage(channel=channel_id, text=f'''Welcome to the leaderboard {user_name}. 
+        You can display the leaderboard by using the slash command /show ''')
     else:
         app.client.chat_postMessage(channel=channel_id, text=f"Welcome to this channel {user_name}.")
+    # Send an acknowledgement response to the Slack API
+    ack()
+
+
+@app.command("/show_leaderboard")
+def bot_start(ack, body, logger):
+    
+    channel_id = body['channel_id']
+    
+    mycursor.execute( "SELECT * FROM EMPLOYEE_DETAILS ORDER BY points DESC LIMIT 10" )
+    rows = mycursor.fetchall()
+    final_result = []
+    heading = {
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "Leaderboard"
+			}
+		}
+    final_result.append(heading)
+    max_length = 30
+    for row in rows:
+        name_length = len(row[1])
+        padding =  ' '*(max_length-name_length)
+        name = row[1]+padding
+        block = {
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": name + padding + str(row[2])
+			},    
+        }
+    
+        divider =  {
+			"type": "divider"
+		}
+      
+        final_result.append(block)
+        final_result.append(divider)
+        
+    app.client.chat_postMessage(channel=channel_id,
+        blocks = final_result,
+        text = "Testing"
+    )
+
     # Send an acknowledgement response to the Slack API
     ack()
 
@@ -57,53 +107,73 @@ def handle_command(ack, respond, command):
     # ...
     # Respond to the user
     if channel_name == "reward":
-        mycursor.execute(
-            "SELECT points FROM EMPLOYEE_DETAILS WHERE user_name = %s", (employee_rewarded,))
-        user = mycursor.fetchone()
-        if not employee_rewarded:
-            respond(
-                f"Input Text received: {command_text}.\nEmployee Name should not be empty! Please Enter a name. For more details, give the slash command /start")
-        elif not user:
-            respond(
-                f"Input Text received: {command_text}.\nI could not find '{employee_rewarded}' in our Employee Database. Try again")
-        else:
-            if user_name.lower() == employee_rewarded.lower():
+        mycursor.execute("SELECT * FROM EMPLOYEE_DETAILS WHERE user_name = %s", (user_name,))
+        user_name_check = mycursor.fetchone()
+        if user_name_check:
+            mycursor.execute(
+                "SELECT points FROM EMPLOYEE_DETAILS WHERE user_name = %s", (employee_rewarded,))
+            user = mycursor.fetchone()
+            if not employee_rewarded:
                 respond(
-                    f"Input Text received: {command_text}.\nYou should not reward points to yourself")
-            elif reward_reason == "":
+                    f"Input Text received: {command_text}.\nEmployee Name should not be empty! Please Enter a name. For more details, give the slash command /start")
+            elif not user:
                 respond(
-                    f"Input Text received: {command_text}.\nPlease Justify why you are giving the point")
-            elif len(reward_reason.split(" ")) == 1:
-                respond(
-                    f"Input Text received: {command_text}.\nOne word Justification is not sufficient. Please Elaborate the contribution")
+                    f"Input Text received: {command_text}.\nI could not find '{employee_rewarded}' in our Employee Database. Try again")
             else:
-                mycursor.execute(
-                    "SELECT attempts FROM audit WHERE user_name = %s", (user_name,))
-                reward_count = mycursor.fetchone()[0]
-                if(reward_count >= 3):
+                if user_name.lower() == employee_rewarded.lower():
                     respond(
-                        f"Input Text received: {command_text}.\nYou can give points only for a maximum number of 3 times.")
+                        f"Input Text received: {command_text}.\nYou should not reward points to yourself")
+                elif reward_reason == "":
+                    respond(
+                        f"Input Text received: {command_text}.\nPlease Justify why you are giving the point")
+                elif len(reward_reason.split(" ")) == 1:
+                    respond(
+                        f"Input Text received: {command_text}.\nOne word Justification is not sufficient. Please Elaborate the contribution")
                 else:
-                    lock.acquire()
-                    try:
-                        sql = "UPDATE EMPLOYEE_DETAILS SET points = %s WHERE user_name = %s"
-                        val = (user[0]+20, employee_rewarded)
-                        mycursor.execute(sql, val)
+                    mycursor.execute(
+                        "SELECT attempts FROM audit WHERE user_name = %s", (user_name,))
+                    
+                    audit = mycursor.fetchone()
+                    reward_count=0
+                    if audit:
+                        reward_count = audit[0]
+                    else:
+                        sql = "INSERT INTO audit (user_name, attempts) VALUES (%s, %s)"
+                        values = (user_name,0)
+                        mycursor.execute(sql,values)
                         mydb.commit()
-                        sql2 = "UPDATE audit SET attempts = %s WHERE user_name = %s"
-                        val2 = (reward_count+1, user_name)
-                        mycursor.execute(sql2, val2)
-                        mydb.commit()
+                    if(reward_count >= 3):
                         respond(
-                            f"Input Text received: {command_text}.\n20 points is rewarded to the employee '{employee_rewarded}'. The comment you gave is '{reward_reason}'")
-                    except SlackApiError as e:
-                        print("Error: {}".format(e))
-                    except pymysql.Error as e:
-                        print("Error: {}".format(e))
-                        mydb.rollback()
-                    finally:
-                        # Release lock when finished accessing database
-                        lock.release()
+                            f"Input Text received: {command_text}.\nYou can give points only for a maximum number of 3 times.")
+                    else:
+                        lock.acquire()
+                        try:
+                            sql = "UPDATE EMPLOYEE_DETAILS SET points = %s WHERE user_name = %s"
+                            val = (user[0]+20, employee_rewarded)
+                            mycursor.execute(sql, val)
+                            mydb.commit()
+                            sql2 = "UPDATE audit SET attempts = %s WHERE user_name = %s"
+                            val2 = (reward_count+1, user_name)
+                            mycursor.execute(sql2, val2)
+                            mydb.commit()
+                            respond(
+                                f"Input Text received: {command_text}.\n20 points is rewarded to the employee '{employee_rewarded}'. The comment you gave is '{reward_reason}'")
+                        except SlackApiError as e:
+                            print("Error: {}".format(e))
+                        except pymysql.Error as e:
+                            print("Error: {}".format(e))
+                            mydb.rollback()
+                        finally:
+                            # Release lock when finished accessing database
+                            lock.release()
+        else:
+            respond(
+                 f"Input Text received: {command_text}.\nSorry {user_name}! You should be a part of this organization to provide rewards to others")
+        
+                
+                
+
+                    
     else:
         respond("Wrong channel.If you are willing to reward another employee, use the reward channel")
 
@@ -111,5 +181,5 @@ def handle_command(ack, respond, command):
 
 
 if __name__ == "__main__":
-    handler = SocketModeHandler(app = app, app_token=os.environ['SLACK_APP_TOKEN'])
+    handler = SocketModeHandler(app = app, app_token=os.environ['SLACK_API_TOKEN'])
     handler.start()
