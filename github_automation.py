@@ -55,6 +55,6 @@ def github():
                 requests.post(web_hook, data=json.dumps(slack_msg))
                 id_msg = {'text': login}
                 requests.post(web_hook, data=json.dumps(id_msg))
-    return 'login'    
+    return 200    
 if __name__=='__main__':
     app.run()
