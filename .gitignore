@@ -103,7 +103,8 @@ dist
 # TernJS port file
 .tern-port
 
-.venv/
 .DS_Store
-
 .python-version
+.venv
+__pycache__
+ngrok
