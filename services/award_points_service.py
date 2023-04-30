@@ -1,7 +1,11 @@
 from datetime import datetime
 import mysql
+import requests
+import os
+from dotenv import load_dotenv
 
-bot_channel_id = "C04UPGXJPF0"
+load_dotenv()
+
 awards = {
     "mastermind": {
         "label": "Mastermind",
@@ -182,37 +186,42 @@ def send_award_message(client, award_info):
     awarder = client.users_info(user=award_info["awarder"])[
         "user"]["real_name"]
 
-    client.chat_postMessage(
-        channel=bot_channel_id,
-        blocks=[
+    body = {
+        "blocks": [
             {
                 "type": "divider"
             },
             {
                 "type": "header",
                 "text": {
-                    "type": "plain_text",
-                    "text": f'{award_info["award"]} Award {award_info["emoji"]}',
-                    "emoji": True
+                        "type": "plain_text",
+                        "text": f'{award_info["award"]} Award {award_info["emoji"]}',
+                        "emoji": True
                 }
             },
             {
                 "type": "section",
                 "text": {
-                    "type": "plain_text",
-                    "text": f'{awarder} just awarded {awardee} the {award_info["award"]} award!',
-                    "emoji": True
+                        "type": "plain_text",
+                        "text": f'{awarder} just awarded {awardee} the {award_info["award"]} award!',
+                        "emoji": True
                 }
             },
             {
                 "type": "section",
                 "text": {
-                    "type": "plain_text",
-                    "text": award_info["message"],
-                    "emoji": True
+                        "type": "plain_text",
+                        "text": award_info["message"],
+                        "emoji": True
                 }
             }
         ]
+    }
+
+    requests.post(
+        os.environ.get("SLACK_WEBHOOK_URL"),
+        json=body,
+        timeout=5
     )
 
 
