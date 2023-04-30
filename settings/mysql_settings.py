@@ -9,14 +9,13 @@ def init():
 
     load_dotenv()
 
-    if os.getenv("MYSQL_HOST") == "localhost":
-        connection = mysql.connector.connect(
-            host=os.getenv("MYSQL_HOST"),
-            database=os.getenv("MYSQL_DATABASE"),
-            user=os.getenv("MYSQL_USERNAME"),
-            password=os.getenv("MYSQL_PASSWORD"),
-            port=os.getenv("MYSQL_PORT")
-        )
+    connection = mysql.connector.connect(
+        host=os.getenv("MYSQL_HOST"),
+        database=os.getenv("MYSQL_DATABASE"),
+        user=os.getenv("MYSQL_USERNAME"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        port=os.getenv("MYSQL_PORT")
+    )
 
     try:
         if connection.is_connected():
