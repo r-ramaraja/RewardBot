@@ -14,7 +14,8 @@ def init():
         database=os.getenv("MYSQL_DATABASE"),
         user=os.getenv("MYSQL_USERNAME"),
         password=os.getenv("MYSQL_PASSWORD"),
-        port=os.getenv("MYSQL_PORT")
+        port=os.getenv("MYSQL_PORT"),
+        autocommit=True
     )
 
     try:
