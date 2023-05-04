@@ -62,6 +62,3 @@ def handle_exit():
 atexit.register(handle_exit)
 signal.signal(signal.SIGTERM, handle_exit)
 signal.signal(signal.SIGINT, handle_exit)
-
-if __name__ == "__main__":
-    flask_app.run(debug=True, port=3001)
