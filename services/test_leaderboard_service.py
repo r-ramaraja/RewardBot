@@ -1,6 +1,6 @@
 '''
 To write unit tests using Pytest, we are creating mock objects for the function arguments ack, body, 
-client, and mysql_connection. 
+client, and mysql_connection
 
 '''
 import pytest
