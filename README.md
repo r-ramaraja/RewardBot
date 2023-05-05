@@ -6,3 +6,8 @@ Fasi Ullah Khan - fasi <br/>
 Ramaraja Ramanujan - ramaraja <br/>
 Ramnath Raghu - rramnath <br/>
 Shaunak Juvekar - jshaunak <br/>
+
+Use Case Diagrams <br/>
+Automatically awarding points after a PR is merged <br/>
+  <br/>
+The above diagram represents a Use Case where after an employee raises a PR and once it is merged, GitHub and Slack interact using webhooks. The points will be given to the employee and updated in the database. After this, the bot will post a message on the channel saying the employee XYZ has been awarded points for their ABC contribution.
