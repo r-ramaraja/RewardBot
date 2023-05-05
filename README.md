@@ -7,6 +7,12 @@ Ramaraja Ramanujan - ramaraja <br/>
 Ramnath Raghu - rramnath <br/>
 Shaunak Juvekar - jshaunak <br/>
 
+To run the program, use the following command <br/>
+flask -app app run -debug
+
+To check the test cases,
+1. Go
+
 Use Case Diagrams <br/>
 Automatically awarding points after a PR is merged <br/>
   <br/>
