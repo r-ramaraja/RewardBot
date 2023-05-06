@@ -77,6 +77,7 @@ To run the tests, do the following,
 Project Proposal: [Link](docs/proposal.pdf)
 Design Sketches: [Link](docs/design_sketches.pdf)
 Final Report: [Link](docs/final_report.pdf)
+Demo Presentation: [Link](docs/demo.pdf)
 
 ## Organization
 
@@ -111,7 +112,7 @@ Final Report: [Link](docs/final_report.pdf)
 
 - `app.py` is the entry point of the application.
 - `data/tables.sql` contains the SQL script to create the required tables.
-- `docs/` contains the project proposal, design sketches, and the final report.
+- `docs/` contains the documentation regarding the project (report, proposal, demo).
 - `requirements.txt` contains the list of dependencies.
 - `services/` contains the business logic of the application.
 - `settings/` contains the settings for the application.
