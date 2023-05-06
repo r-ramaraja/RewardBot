@@ -2,7 +2,7 @@
 
 **HokieTechies** <br/>
 Dhruveel Chouhan - dhruveel10 <br/>
-Fasi Ullah Khan - fasi <br/>
+Fasi Ullah Khan Mohammed - fasi <br/>
 Ramaraja Ramanujan - ramaraja <br/>
 Ramnath Raghu - rramnath <br/>
 Shaunak Juvekar - jshaunak <br/>
