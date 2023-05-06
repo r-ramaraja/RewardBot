@@ -24,7 +24,7 @@ def mock_mysql_connection():
 
 
 def test_display_leaderboard(mock_ack, mock_body, mock_client, mock_mysql_connection):
-    # Initializing the mock objects
+
     mocker = Mock()
     mocker.patch('mysql_connection.cursor')
     mock_cursor = mock_mysql_connection.cursor.return_value
