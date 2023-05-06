@@ -3,8 +3,6 @@ CREATE TABLE employee(
     github_id VARCHAR(20),
     slack_id VARCHAR(20),
     points INT,
-    is_manager BOOLEAN,
-    manager_id VARCHAR(20)
 );
 
 CREATE TABLE audit(
