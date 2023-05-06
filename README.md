@@ -30,24 +30,25 @@ To run the program you will have to do the following steps <br/>
 To check the test cases,
 1. Go
 
+
+Use Case<br/>
+Title: Integrating our RewardBot with GitHub<br/>
+Actors Involved: RewardBot and GitHub<br/>
+Goal: Automatically award points to employees after their is merged<br/>
+
+Preconditions:<br/>
+1. The employee should be present in the database..<br/>
+2. The employee should have raised a PR.<br/>
+
+Flow of events:<br/>
+1. Once the PR is merged, it automatically award points to the employee and will update the database
+2. It will post a message on the slack channel saying, Employee ABC has been awarded xyz points for their so and so contribution.
+
+
 Use Case Diagrams <br/>
 Automatically awarding points after a PR is merged <br/>
  ![SE](https://user-images.githubusercontent.com/66111178/236627111-e2fad205-8976-4a75-84cb-3cd85b221394.png)
  <br/>
 The above diagram represents a Use Case where after an employee raises a PR and once it is merged, GitHub and Slack interact using webhooks. The points will be given to the employee and updated in the database. After this, the bot will post a message on the channel saying the employee XYZ has been awarded points for their ABC contribution.
-
-Use Case
-Title: Integrating our RewardBot with GitHub
-
-Actors Involved: RewardBot and GitHub
-
-Goal: Automatically award points to employees after their is merged
-
-Preconditions:
-The employee should be present in the database..
-The employee should have raised a PR.
-Flow of events:
-Once the PR is merged, it automatically award points to the employee and will update the database
-It will post a message on the slack channel saying, Employee ABC has been awarded xyz points for their so and so contribution.
 
 
