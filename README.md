@@ -31,7 +31,7 @@ To check the test cases,
 1. Go
 
 <hr>
-Use Case: Integrating our RewardBot with GitHub
+Use Case: Integrating our RewardBot with GitHub<br/>
 
 Preconditions:<br/>
 The employee should be present in the database.<br/>
