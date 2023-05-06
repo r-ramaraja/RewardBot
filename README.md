@@ -2,6 +2,12 @@
 
 [![Pylint](https://github.com/r-ramaraja/RewardBot/actions/workflows/pylint.yml/badge.svg)](https://github.com/r-ramaraja/RewardBot/actions/workflows/pylint.yml)
 [![Pytest](https://github.com/r-ramaraja/RewardBot/actions/workflows/pytest.yml/badge.svg)](https://github.com/r-ramaraja/RewardBot/actions/workflows/pytest.yml)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=r-ramaraja_RewardBot&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=r-ramaraja_RewardBot)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=r-ramaraja_RewardBot&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=r-ramaraja_RewardBot)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=r-ramaraja_RewardBot&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=r-ramaraja_RewardBot)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=r-ramaraja_RewardBot&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=r-ramaraja_RewardBot)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=r-ramaraja_RewardBot&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=r-ramaraja_RewardBot)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=r-ramaraja_RewardBot&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=r-ramaraja_RewardBot)
 
 ## Description
 
