@@ -1,4 +1,6 @@
 def display_leaderboard(ack, body, client, mysql_connection):
+    """Retrieves the top 10 performers and sends a message to the user"""
+
     ack()
 
     user = body["user_id"]
@@ -23,6 +25,7 @@ def display_leaderboard(ack, body, client, mysql_connection):
         }
     ]
 
+    # Construct the message blocks to send to the user
     for index, row in enumerate(result):
 
         text = f'{row[0]} - {row[1]} points'

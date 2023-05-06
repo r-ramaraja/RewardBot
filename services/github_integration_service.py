@@ -8,22 +8,25 @@ load_dotenv()
 
 
 def is_pull_request_merged(body):
+    """Validate that the pull request was merged"""
+
     if body["action"] == "closed" and body["pull_request"]["merged"]:
         return True
     return False
 
 
 def store_points(body, mysql_connection):
+    """Store points in the database for the awardee and creates an audit record"""
+
     mycursor = mysql_connection.cursor()
-    now = datetime.now()
-    formatted_date = now.strftime('%Y-%m-%d')
+    current_date = datetime.now().strftime('%Y-%m-%d')
     user = body["pull_request"]["user"]["login"]
 
     try:
 
+        # Rollback any previous transaction that was not committed
         if mysql_connection.in_transaction:
             mysql_connection.rollback()
-            print("Rolling back previous transaction...")
 
         mysql_connection.start_transaction()
 
@@ -39,7 +42,7 @@ def store_points(body, mysql_connection):
 
         sql2 = "INSERT INTO audit (awarder, awardee, award, award_date) VALUES (%s, %s, %s, %s)"
         val2 = ("github", awardee,
-                "GitHub", formatted_date)
+                "GitHub", current_date)
         mycursor.execute(sql2, val2)
 
         mysql_connection.commit()
@@ -53,7 +56,9 @@ def store_points(body, mysql_connection):
         mycursor.close()
 
 
-def send_github_slack_message(body):
+def send_message(body):
+    """Send a message to the public bot channel announcing the GitHub award"""
+
     user = body["pull_request"]["user"]["login"]
     url = body["pull_request"]["html_url"]
 

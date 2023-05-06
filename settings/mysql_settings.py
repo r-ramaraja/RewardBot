@@ -19,8 +19,8 @@ def init():
     )
 
     try:
-        if connection.is_connected():
-            cursor = connection.cursor()
+        cursor = connection.cursor()
+        # Print MySQL version to check if connection is established
         cursor.execute("select @@version ")
         version = cursor.fetchone()
         if version:

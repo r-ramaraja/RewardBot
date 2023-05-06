@@ -11,7 +11,7 @@ from slack.leaderboard_events import construct_leaderboard_events
 from services import github_integration_service
 from settings import mysql_settings
 
-
+# Initialize MySQL connection globally once and pass along
 mysql_settings.init()
 mysql_connection = mysql_settings.connection
 
@@ -26,6 +26,7 @@ app = construct_award_points_events(app, mysql_connection)
 app = construct_github_events(app)
 app = construct_leaderboard_events(app, mysql_connection)
 
+# Handle slack events through Flask
 flask_app = Flask(__name__)
 handler = SlackRequestHandler(app)
 
@@ -35,7 +36,7 @@ def handle_github_hook():
     body = request.json
     if github_integration_service.is_pull_request_merged(body):
         github_integration_service.store_points(body, mysql_connection)
-        github_integration_service.send_github_slack_message(body)
+        github_integration_service.send_message(body)
 
     return "200"
 
@@ -59,6 +60,7 @@ def handle_exit():
     mysql_connection.close()
 
 
+# Handle graceful shutdown by closing MySQL connection
 atexit.register(handle_exit)
 signal.signal(signal.SIGTERM, handle_exit)
 signal.signal(signal.SIGINT, handle_exit)
