@@ -15,5 +15,6 @@ To check the test cases,
 
 Use Case Diagrams <br/>
 Automatically awarding points after a PR is merged <br/>
-  <br/>
+ ![SE](https://user-images.githubusercontent.com/66111178/236627111-e2fad205-8976-4a75-84cb-3cd85b221394.png)
+ <br/>
 The above diagram represents a Use Case where after an employee raises a PR and once it is merged, GitHub and Slack interact using webhooks. The points will be given to the employee and updated in the database. After this, the bot will post a message on the channel saying the employee XYZ has been awarded points for their ABC contribution.
