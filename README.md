@@ -54,5 +54,60 @@ VALUES ('Ramaraja Ramanujan', 'r-ramaraja', 'U04SNJYHQ6P', 0);
 
 To run the tests, do the following,
 
+- Clone the repository using `git clone https://github.com/r-ramaraja/RewardBot.git`
+- Setup Python virtual environment,
+  
+    ```bash
+    python3 -m venv .venv
+    source .venv/bin/activate
+    ```
+
 - Install the dependencies using `pip install -r requirements.txt`
 - Run the tests using `pytest` from the root directory
+
+## Documentation
+
+Project Proposal: [Link](docs/proposal.pdf)
+Design Sketches: [Link](docs/design_sketches.pdf)
+Final Report: [Link](docs/final_report.pdf)
+
+## Organization
+
+```bash
+├── LICENSE
+├── README.md
+├── app.py
+├── .env
+├── data
+│   └── tables.sql
+├── docs
+│   ├── final-report.pdf
+│   ├── proposal-design-sketch.pdf
+│   └── proposal.pdf
+├── requirements.txt
+├── services
+│   ├── __init__.py
+│   ├── award_points_service.py
+│   ├── github_integration_service.py
+│   └── leaderboard_service.py
+├── settings
+│   └── mysql_settings.py
+├── slack
+│   ├── __init__.py
+│   ├── award_points_events.py
+│   ├── github_integration_events.py
+│   └── leaderboard_events.py
+└── tests
+    ├── __init__.py
+    └── test_leaderboard_service.py
+```
+
+- `app.py` is the entry point of the application.
+- `data/tables.sql` contains the SQL script to create the required tables.
+- `docs/` contains the project proposal, design sketches, and the final report.
+- `requirements.txt` contains the list of dependencies.
+- `services/` contains the business logic of the application.
+- `settings/` contains the settings for the application.
+- `slack/` contains the Slack event handlers.
+- `tests/` contains the unit tests for the application.
+- `.env` contains the environment variables for the application.
