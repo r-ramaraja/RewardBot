@@ -1,5 +1,3 @@
-
-
 def construct_github_events(app):
 
     @app.event("message")

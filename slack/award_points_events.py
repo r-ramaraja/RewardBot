@@ -1,4 +1,4 @@
-import services.award_points_service as award_points_service
+from services import award_points_service
 
 
 def construct_award_points_events(app, mysql_connection):

@@ -1,7 +1,7 @@
 from datetime import datetime
+import os
 import mysql
 import requests
-import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -149,14 +149,11 @@ def validate_award(ack, body, view, mysql_connection):
     message = view["state"]["values"]["reward_message"]["message"]["value"]
 
     mycursor = mysql_connection.cursor()
-    now = datetime.now()
-    quarter = (now.month+2)//3
 
     sql = "SELECT COUNT(*) FROM audit WHERE awardee = %s AND QUARTER(award_date) = %s"
-    val = (awardee, quarter)
+    val = (awardee, (datetime.now().month+2)//3)
     mycursor.execute(sql, val)
-    result = mycursor.fetchone()
-    count = result[0]
+    count = mycursor.fetchone()[0]
     mycursor.close()
 
     errors = {}
@@ -169,14 +166,18 @@ def validate_award(ack, body, view, mysql_connection):
 
     if len(errors) > 0:
         ack(response_action="errors", errors=errors)
-        return
+        return {}
 
     ack()
 
-    points = awards[award]["points"]
-    emoji = awards[award]["emoji"]
-    award = awards[award]["label"]
-    return {"awardee": awardee, "awarder": awarder, "award": award, "points": points, "emoji": emoji, "message": message}
+    return {
+        "awardee": awardee,
+        "awarder": awarder,
+        "award": awards[award]["label"],
+        "points": awards[award]["points"],
+        "emoji": awards[award]["emoji"],
+        "message": message
+    }
 
 
 def send_award_message(client, award_info):
@@ -203,7 +204,8 @@ def send_award_message(client, award_info):
                 "type": "section",
                 "text": {
                         "type": "plain_text",
-                        "text": f'{awarder} just awarded {awardee} the {award_info["award"]} award!',
+                        "text": f'{awarder} just awarded {awardee}\
+                            the {award_info["award"]} award!',
                         "emoji": True
                 }
             },

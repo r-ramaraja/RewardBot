@@ -1,13 +1,13 @@
-import requests
 import os
 from datetime import datetime
+import requests
 import mysql
 from dotenv import load_dotenv
 
 load_dotenv()
 
 
-def is_PR_close_event(body):
+def is_pull_request_merged(body):
     if body["action"] == "closed" and body["pull_request"]["merged"]:
         return True
     return False

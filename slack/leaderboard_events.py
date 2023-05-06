@@ -1,4 +1,4 @@
-import services.leaderboard_service as leaderboard_service
+from services import leaderboard_service
 
 
 def construct_leaderboard_events(app, mysql_connection):

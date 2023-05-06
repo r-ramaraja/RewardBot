@@ -1,4 +1,6 @@
 import os
+import signal
+import atexit
 from flask import Flask, request
 from slack_bolt.adapter.flask import SlackRequestHandler
 from slack_bolt import App
@@ -6,11 +8,9 @@ from dotenv import load_dotenv
 from slack.award_points_events import construct_award_points_events
 from slack.github_integration_events import construct_github_events
 from slack.leaderboard_events import construct_leaderboard_events
-import services.github_integration_service as github_integration_service
-
+from services import github_integration_service
 from settings import mysql_settings
-import signal
-import atexit
+
 
 mysql_settings.init()
 mysql_connection = mysql_settings.connection
@@ -33,7 +33,7 @@ handler = SlackRequestHandler(app)
 @flask_app.route("/hook/github", methods=["POST"])
 def handle_github_hook():
     body = request.json
-    if github_integration_service.is_PR_close_event(body):
+    if github_integration_service.is_pull_request_merged(body):
         github_integration_service.store_points(body, mysql_connection)
         github_integration_service.send_github_slack_message(body)
 
