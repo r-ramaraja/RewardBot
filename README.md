@@ -33,11 +33,11 @@ To check the test cases,
 <hr>
 Use Case: Integrating our RewardBot with GitHub
 
-Preconditions:
+Preconditions:<br/>
 The employee should be present in the database.<br/>
 The employee should have raised a PR.<br/>
 
-Main Flow:
+Main Flow:<br/>
 The bot will award the points to the employee who raised the PR once it is merged[S1]. The bot will also post a message on the common channel and will inform everyone about awarding the points[S2]. <br/>
 
 Subflows:<br/>
