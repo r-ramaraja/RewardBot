@@ -9,7 +9,7 @@ RewardBot was developed as part of the course project  for CS5704 - Software Eng
 
 ## Team Info
 
-Name: Hokie Techies
+Name: Hokie Techies  
 Members:
 
 - [Ramaraja Ramanujan](https://github.com/r-ramaraja) - ramaraja
@@ -31,11 +31,11 @@ To setup and run the project locally, do the following,
     ```
 
 - Install the dependencies using `pip install -r requirements.txt`
-- Create a Slack app and install it in your workspace. Refer [this](https://slack.dev/bolt-python/tutorial/getting-started-http) for more details.
-- Setup a MySQL server and create a database. Refer [this](https://dev.mysql.com/doc/mysql-getting-started/en/) for more details.
+- Create and setup a Slack app. Refer [here](https://github.com/r-ramaraja/RewardBot/wiki/Slack-App-Setup) for more details.
+- Setup a MySQL server and create a database. Refer [here](https://dev.mysql.com/doc/mysql-getting-started/en/) for more details.
 - Populate the [.env](.env) file with the MySQL server details.
 - Run the SQL script given [here](data/tables.sql) to create the required tables.
-- We are assuming that the employee details are already in the DB. So, insert ta few employee records into the `employee` table. Eg.
+- We are assuming that the employee details are already in the DB. So, insert a few employee records into the `employee` table. Eg.
   
 ```sql
 INSERT INTO employee 
@@ -43,14 +43,12 @@ VALUES ('Ramaraja Ramanujan', 'r-ramaraja', 'U04SNJYHQ6P', 0);
 ```
 
 - To find the slack id of a user, do the following,
-
-    -  Open the user's full profile in Slack
-    -  Click on the vertical ellipsis (⋮) in the top right corner
-    -  Click on `Copy member ID`
-  
+  - Open the user's full profile in Slack
+  - Click on the vertical ellipsis (⋮) in the top right corner
+  - Click on `Copy member ID`
 - Run the project using `flask --app app run --debug --port <port_number>`. Eg. `flask --app app run --debug --port 8081`
-- Use `ngrok` to expose the local server to the internet. `ngrok http <port_number>`. Eg. `ngrok http 8081`. Refer [this](https://ngrok.com/docs/) for more details.
-- 
+- Use `ngrok` to expose the local server to the internet. `ngrok http <port_number>`. Eg. `ngrok http 8081`. Refer [this](https://ngrok.com/docs#getting-started-expose) for more details.
+- You should be good to go now. You can interact with the bot in Slack!
 
 ## Tests
 
