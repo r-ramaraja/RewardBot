@@ -47,7 +47,7 @@ VALUES ('Ramaraja Ramanujan', 'r-ramaraja', 'U04SNJYHQ6P', 0);
   - Click on the vertical ellipsis (⋮) in the top right corner
   - Click on `Copy member ID`
 - Run the project using `flask --app app run --debug --port <port_number>`. Eg. `flask --app app run --debug --port 8081`
-- Use `ngrok` to expose the local server to the internet. `ngrok http <port_number>`. Eg. `ngrok http 8081`. Refer [this](https://ngrok.com/docs#getting-started-expose) for more details.
+- Use `ngrok` to expose the local server to the internet. `ngrok http <port_number>`. Eg. `ngrok http 8081`. Refer [here](https://ngrok.com/docs#getting-started-expose) for more details.
 - You should be good to go now. You can interact with the bot in Slack!
 
 ## Tests
