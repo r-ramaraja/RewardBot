@@ -8,6 +8,7 @@
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=r-ramaraja_RewardBot&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=r-ramaraja_RewardBot)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=r-ramaraja_RewardBot&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=r-ramaraja_RewardBot)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=r-ramaraja_RewardBot&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=r-ramaraja_RewardBot)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=r-ramaraja_RewardBot&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=r-ramaraja_RewardBot)
 
 ## Description
 
@@ -117,3 +118,9 @@ Final Report: [Link](docs/final_report.pdf)
 - `slack/` contains the Slack event handlers.
 - `tests/` contains the unit tests for the application.
 - `.env` contains the environment variables for the application.
+
+## Workflows
+
+- Pylint: [Link](https://github.com/r-ramaraja/RewardBot/actions/workflows/pylint.yml)
+- Pytest: [Link](https://github.com/r-ramaraja/RewardBot/actions/workflows/pytest.yml)
+- Sonar: [Link](https://sonarcloud.io/dashboard?id=r-ramaraja_RewardBot)
