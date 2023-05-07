@@ -72,6 +72,36 @@ To run the tests, do the following,
 - Install the dependencies using `pip install -r requirements.txt`
 - Run the tests using `pytest` from the root directory
 
+## Features
+
+### Leaderboard
+
+The leaderboard feature allows users to see the top ten performers. The user issues a Slack slash command by typing `/leaderboard`, which prompts the RewardBot to retrieve the top ten performers and send the leaderboard as a direct message.
+
+#### Use Case
+
+Display the leaderboard showing the name of the top ten performers and their accumulated points.
+
+#### Preconditions
+
+- The employee should have the necessary permissions to interact with the bot.
+- There should be valid entries in the database of the respective employees and their details.
+
+#### Main Flow
+
+The employee will invoke a slash command which will then trigger the Reward Bot [S1]. The Reward Bot will then show the leaderboard to the employee on a private channel [S2].
+
+#### Sub Flow
+
+[S1] Employee invokes the bot using the `/leaderboard` slash command.
+[S2] The bot then sends a direct message containing the leaderboard of the top ten performers to the employee who invoked the command.
+
+#### User Diagram
+
+![Leaderboard User Diagram](https://drive.google.com/uc?id=1ca0ftlt0QLbxDLF-p23SiYqBsLNsh3-4)
+
+You can view details about the other features [here](https://github.com/r-ramaraja/RewardBot/wiki/Features)
+
 ## Documentation
 
 Project Proposal: [Link](docs/proposal.pdf)
@@ -125,3 +155,10 @@ Demo Presentation: [Link](docs/demo.pdf)
 - Pylint: [Link](https://github.com/r-ramaraja/RewardBot/actions/workflows/pylint.yml)
 - Pytest: [Link](https://github.com/r-ramaraja/RewardBot/actions/workflows/pytest.yml)
 - Sonar: [Link](https://sonarcloud.io/dashboard?id=r-ramaraja_RewardBot)
+
+## Cloud Deployment
+
+- Flask Service: https://rewardbot.onrender.com
+- MySQL DB: https://cloud.cs.vt.edu/p/c-k7rk9:p-lj9rm/workload/deployment:rewardbot:mysql
+
+Note: The MySQL DB deployed in cloud.cs.vt.edu is not running due to a `429 Too Many Requests` error. We believe this is a problem with cloud.cs.vt.edu and not our application. Since, the MySQL DB is not running, the Flask service in the cloud is not running either.
