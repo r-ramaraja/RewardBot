@@ -103,12 +103,9 @@ The employee will invoke a slash command which will then trigger the Reward Bot 
 
 You can view details about the other features [here](https://github.com/r-ramaraja/RewardBot/wiki/Features)
 
-## Documentation
+## Project Management
 
-Project Proposal: [Link](docs/proposal.pdf)  
-Design Sketches: [Link](docs/design_sketches.pdf)  
-Final Report: [Link](docs/final_report.pdf)  
-Demo Presentation: [Link](docs/demo.pdf)  
+GitHub Project Board: [Link](https://github.com/users/r-ramaraja/projects/3)
 
 ## Organization
 
@@ -150,6 +147,13 @@ Demo Presentation: [Link](docs/demo.pdf)
 - `slack/` contains the Slack event handlers.
 - `tests/` contains the unit tests for the application.
 - `.env` contains the environment variables for the application.
+
+## Documentation
+
+Project Proposal: [Link](docs/proposal.pdf)  
+Design Sketches: [Link](docs/design_sketches.pdf)  
+Final Report: [Link](docs/final_report.pdf)  
+Demo Presentation: [Link](docs/demo.pdf)  
 
 ## Workflows
 
