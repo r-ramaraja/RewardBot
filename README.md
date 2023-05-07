@@ -105,7 +105,9 @@ You can view details about the other features [here](https://github.com/r-ramara
 
 ## Project Management
 
-GitHub Project Board: [Link](https://github.com/users/r-ramaraja/projects/3)
+Kanban Board: [Link](https://github.com/users/r-ramaraja/projects/3)
+Issue Tracker: [Link](https://github.com/r-ramaraja/RewardBot/issues)
+Wiki: [Link](https://github.com/r-ramaraja/RewardBot/wiki)
 
 ## Organization
 
