@@ -18,12 +18,13 @@ RewardBot was developed as part of the course project  for CS5704 - Software Eng
 
 Name: Hokie Techies  
 Members:
-
-- [Ramaraja Ramanujan](https://github.com/r-ramaraja) - ramaraja
-- [Dhruveel Chouhan](https://github.com/dhruveel10) - dhruveel10
-- [Shaunak Juvekar](https://github.com/shaunakjuvekar) - jshaunak
-- [Fasi Ullah Khan Mohammed](https://github.com/fasikhan03) - fasi
-- [Ramnath Raghu](https://github.com/rramnath-vt) - rramnath
+| Name                                                      | GitHub ID      | VT PID     |
+| --------------------------------------------------------- | -------------- | ---------- |
+| [Ramaraja Ramanujan](https://github.com/r-ramaraja)       | r-ramaraja     | ramaraja   |
+| [Dhruveel Chouhan](https://github.com/dhruveel10)         | dhruveel10     | dhruveel10 |
+| [Fasi Ullah Khan Mohammed](https://github.com/fasikhan03) | fasikhan03     | fasi       |
+| [Shaunak Juvekar](https://github.com/shaunakjuvekar)      | shaunakjuvekar | jshaunak   |
+| [Ramnath Raghu](https://github.com/rramnath-vt)           | rramnath-vt    | rramnath   |
 
 ## Setup
 
