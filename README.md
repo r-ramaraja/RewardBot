@@ -104,10 +104,10 @@ You can view details about the other features [here](https://github.com/r-ramara
 
 ## Documentation
 
-Project Proposal: [Link](docs/proposal.pdf)
-Design Sketches: [Link](docs/design_sketches.pdf)
-Final Report: [Link](docs/final_report.pdf)
-Demo Presentation: [Link](docs/demo.pdf)
+Project Proposal: [Link](docs/proposal.pdf)  
+Design Sketches: [Link](docs/design_sketches.pdf)  
+Final Report: [Link](docs/final_report.pdf)  
+Demo Presentation: [Link](docs/demo.pdf)  
 
 ## Organization
 
