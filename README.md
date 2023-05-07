@@ -93,7 +93,7 @@ The employee will invoke a slash command which will then trigger the Reward Bot 
 
 #### Sub Flow
 
-[S1] Employee invokes the bot using the `/leaderboard` slash command.
+[S1] Employee invokes the bot using the `/leaderboard` slash command.  
 [S2] The bot then sends a direct message containing the leaderboard of the top ten performers to the employee who invoked the command.
 
 #### User Diagram
