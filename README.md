@@ -14,18 +14,6 @@
 
 RewardBot was developed as part of the course project  for CS5704 - Software Engineering at Virginia Tech in Spring '23'. RewardBot is a smart bot-based reward and recognition system for software engineering teams. It solves the problem of existing rewards and recognition systems which suffer from multiple flaws, including a lack of transparency, difficulty in quantifying rewards, and poorly defined actionable objectives. RewadBot is a Slack bot that utilizes gamification principles to recognize and reward employees effectively. RewardBot awards points based on individuals’ contributions to projects and their involvement in the open-source community. These accumulated points are displayed on a leaderboard and can be redeemed for various rewards, boosting employee motivation and fostering a healthy competitive environment.
 
-## Team Info
-
-Name: Hokie Techies  
-Members:
-| Name                                                      | GitHub ID      | VT PID     |
-| --------------------------------------------------------- | -------------- | ---------- |
-| [Ramaraja Ramanujan](https://github.com/r-ramaraja)       | r-ramaraja     | ramaraja   |
-| [Dhruveel Chouhan](https://github.com/dhruveel10)         | dhruveel10     | dhruveel10 |
-| [Fasi Ullah Khan Mohammed](https://github.com/fasikhan03) | fasikhan03     | fasi       |
-| [Shaunak Juvekar](https://github.com/shaunakjuvekar)      | shaunakjuvekar | jshaunak   |
-| [Ramnath Raghu](https://github.com/rramnath-vt)           | rramnath-vt    | rramnath   |
-
 ## Setup
 
 To setup and run the project locally, do the following,
